@@ -178,10 +178,84 @@ public class Program
         // Console.WriteLine(binaryReader.ReadString());
         // Console.WriteLine(binaryReader.ReadString());
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////
 
+        //// Folder yaratmaq
+
+        // Directory.CreateDirectory("C:\\Users\\k.karimzada\\Desktop\\Folder1");
+        // Directory.CreateDirectory("C:/Users/k.karimzada/Desktop/Folder2");
+        // Directory.CreateDirectory(@"C:\Users\k.karimzada\Desktop\Folder3");
+        // Directory.CreateDirectory(@$"C:\Users\{Environment.UserName}\Desktop\Folder4"); // UserName-i dinamik yaziriq
+        // Directory.CreateDirectory(@$"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\Folder5"); // Desktopun path-in dinamik aliriq
+
+        // Directory.Delete(@$"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\Folder5"); // Silirik
 
         ////////////////////////////////////////////////////////////////////////////////////////////////
 
+        /// Directory Info
+
+        //  DirectoryInfo directoryInfo = new(Directory.GetCurrentDirectory()); // Oldugu yer
+        //  DirectoryInfo directoryInfo2 = new("."); // Oldugu yer
+        //  DirectoryInfo directoryInfo3 = new(@$"C:\Users\{Environment.UserName}\Desktop");
+        // 
+        //  foreach (FileInfo file in directoryInfo.GetFiles())  // File-larin adlarini qaytarir
+        //      Console.WriteLine(file.Name);
+        // 
+        // 
+
+        // foreach (DirectoryInfo directory in directoryInfo.GetDirectories()) // Icersinde olan Folder-leri aliriq
+        // {
+        //     Console.WriteLine(directory.Root);          // C diski
+        //     Console.WriteLine(directory.Parent);        // Hansi folder icerisindedir
+        //     Console.WriteLine(directory.FullName);      // Fullname
+        // }
+
+
+        // . ile arxaya qabaga getmek
+
+        // //DirectoryInfo directoryInfo = new(".");           // Oldugu yer
+        // //DirectoryInfo directoryInfo = new("..");          // 1 Papka arxaya
+        // DirectoryInfo directoryInfo = new("../../..");      // /.. yene 1 papka yere
+        // // DirectoryInfo directoryInfo = new("./Images");   // Ireli getmek
+        // // DirectoryInfo directoryInfo = new("Images/");    // Ireli getmek
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        /// File, FileInfo
+
+
+        // File.WriteAllText("file.txt", "content");
+        // var str = File.ReadAllText("file.txt");
+        // Console.WriteLine(str);
+
+        // 
+        // Console.WriteLine(File.Exists("file.txt")); // Yoxlayirki var ya yox
+
+
+        // FileInfo fileInfo = new("file.txt"); // Static olmayan versiya
+        // 
+        // 
+        // Console.WriteLine(fileInfo.Extension);
+        // Console.WriteLine(fileInfo.Name);
+        // Console.WriteLine(fileInfo.CreationTime);
+        // Console.WriteLine(fileInfo.Length);
+        // Console.WriteLine(fileInfo.DirectoryName);
+        // Console.WriteLine(fileInfo.Exists);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /// Path
+
+        // string extension = ".txt";
+        // string filename = "example";
+        // 
+        // string fullFilename = filename + extension;
+        // 
+        // 
+        // var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fullFilename);
+        // 
+        // Console.WriteLine(path);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////
 
     }
 }
