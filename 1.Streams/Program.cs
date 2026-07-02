@@ -1,4 +1,7 @@
-﻿namespace _1.Streams;
+﻿using _1.Streams.Models;
+using System.Text;
+
+namespace _1.Streams;
 
 // Stream => melumat axini. Biz melumatlari bir yerden diger yere 'byte'-lar seklinde gonderirik
 
@@ -42,14 +45,12 @@
 ////////////////////////////////////////////////////
 // ---- File Mode ----
 
-/// 1. Create                        --> File yoxdursa yaradir, varsa silir yeniden yazir
-/// 2. Append                        --> File-in sonuna elave edir
-/// 3. CreateNew                --> Eger file yoxdursa yaradir, varsa Exception atir
-/// 4. Open                                --> Eger file varsa acir, yoxdursa Exception atir
-/// 5. OpenOrCreate                --> Varsa acir, yoxdursa yaradir
-/// 6. Truncate                        --> File varsa icerisini silir, melumatlari 0-dan yazir. Yoxdursa Exception atir
-
-
+/// 1. Create         --> File yoxdursa yaradir, varsa silir yeniden yazir
+/// 2. Append         --> File-in sonuna elave edir
+/// 3. CreateNew      --> Eger file yoxdursa yaradir, varsa Exception atir
+/// 4. Open           --> Eger file varsa acir, yoxdursa Exception atir
+/// 5. OpenOrCreate   --> Varsa acir, yoxdursa yaradir
+/// 6. Truncate       --> File varsa icerisini silir, melumatlari 0-dan yazir. Yoxdursa Exception atir
 
 
 public class Program
@@ -57,16 +58,129 @@ public class Program
     static void Main(string[] args)
     {
 
-       
-       
-       
+        // File strame 
 
-       
+        // // Example
 
-       
+        // FileStream fs = new FileStream("text.txt", FileMode.Create, FileAccess.Write, FileShare.None);
+        // 
+        // fs.Flush(); // Bu yazdiqlarini yadda saxlayir
+        // fs.Close(); // File-i baglayir
+        // fs.Dispose(); // Elaqeni kesir
 
-       
 
+        ////////////////////////////////////////////////////////////////////////
+        /// FileStream with using ( Write )
+
+        // using (var fs = new FileStream("text.txt", FileMode.Create))
+        // {
+        //     Console.WriteLine("Enter some text: ");
+        // 
+        //     string str = Console.ReadLine();
+        // 
+        //     // fs.Write(str); // Yazsaq olmur, bizden Byte[] isteyir
+        // 
+        //     byte[] buffer = Encoding.UTF8.GetBytes(str);
+        // 
+        //     fs.Write(buffer, 0, buffer.Length);
+        // 
+        //     // File exe hardadirsa onun yaninda yaranacaq
+        // }
+
+        ////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////////
+        /// FileStream ( Read )
+
+        // using (var fs = new FileStream("text.txt", FileMode.Open))
+        // {
+        //     byte[] buffer = new byte[fs.Length]; // Stream aciqdi deye olur
+        // 
+        //     fs.Read(buffer, 0, buffer.Length);
+        // 
+        //     string str = Encoding.UTF8.GetString(buffer);
+        // 
+        //     Console.WriteLine(str);
+        // }
+
+        ////////////////////////////////////////////////////////////////////////
+
+
+        /// Write with StreamWriter ( Adapter )
+
+        /// Way 1
+
+        // using (var fs = new FileStream("test.txt", FileMode.OpenOrCreate))
+        // {
+        //     StreamWriter streamWriter = new StreamWriter(fs);
+        // 
+        //     streamWriter.WriteLine("Kamran");
+        //     streamWriter.WriteLine("Karimzada");
+        // 
+        //     streamWriter.Close(); // yazmasam yadda saxlamir
+        // }
+
+
+        /// Way 2 -> Close etmemek ucun, usinng ozu Close, Dispose arxada cagirir
+
+        // using FileStream fs = new FileStream("test.txt", FileMode.OpenOrCreate);
+        // using StreamWriter streamWriter = new StreamWriter(fs);
+        // 
+        // 
+        // streamWriter.WriteLine("Kamran1");
+        // streamWriter.WriteLine("Karimzada1");
+
+        ////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////////
+        //// StreamWriter ile Class yazmaq
+
+        // using FileStream fs = new FileStream("book.txt", FileMode.OpenOrCreate);
+        // using StreamWriter streamWriter = new StreamWriter(fs);
+        // 
+        // var books = new List<Book>()
+        //  {
+        //          new Book(1, "Kamran", "C#", "Education"),
+        //          new Book(2, "Albahari", "C# Core", "Education"),
+        //  };
+        // 
+        // //books.ForEach(x => Console.WriteLine(x));
+        // 
+        // // Yazmaq
+        // books.ForEach(x => streamWriter.WriteLine(x));
+
+        ////////////////////////////////////////////////////////////////////////
+
+        // Adi melumati oxumaq
+        // using StreamReader streamWriter1 = new StreamReader("text.txt");
+        // Console.WriteLine(streamWriter1.ReadLine());
+
+        ////////////////////////////////////////////////////////////////////////
+
+
+        //////////
+        /// Binary kimi yazmaq ve oxumaq
+
+
+        // Write
+        // using FileStream fileStream = new FileStream("some.bin", FileMode.Create);
+        // using BinaryWriter binaryWriter = new BinaryWriter(fileStream);
+        //
+        // binaryWriter.Write("Kamran");
+        // binaryWriter.Write("Karimzada");
+        // binaryWriter.Write("26");
+
+        // // Read
+        // using FileStream fileStreamRead = new FileStream("some.bin", FileMode.Open);
+        // using BinaryReader binaryReader = new BinaryReader(fileStreamRead);
+        // 
+        // Console.WriteLine(binaryReader.ReadString());
+        // Console.WriteLine(binaryReader.ReadString());
+        // Console.WriteLine(binaryReader.ReadString());
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     }
